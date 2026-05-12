@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Story Poster Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="/" class="back-btn">← Späť</a>
+
+<main class="app">
+    <section class="hero">
+        <h1>Photo Story Poster Lab</h1>
+        <p>
+            Nahraj fotografiu a premeň ju na filmový plagát, magazínovú obálku,
+            cyberpunk ID kartu, retro pohľadnicu alebo inú vizuálnu scénu.
+        </p>
+    </section>
+
+    <section class="controls">
+        <label class="upload-btn">
+            Nahrať fotografiu
+            <input type="file" id="imageInput" accept="image/*">
+        </label>
+
+        <label>
+            Štýl
+            <select id="posterStyle">
+                <option value="movie">Movie Poster</option>
+                <option value="detective">Detective Case File</option>
+                <option value="cyberpunk">Cyberpunk ID</option>
+                <option value="postcard">Retro Postcard</option>
+                <option value="magazine">Magazine Cover</option>
+                <option value="wanted">Wanted Poster</option>
+                <option value="album">Album Cover</option>
+                <option value="news">News Front Page</option>
+            </select>
+        </label>
+
+        <label>
+            Názov
+            <input type="text" id="titleInput" placeholder="Zadaj názov">
+        </label>
+
+        <label>
+            Podnadpis
+            <input type="text" id="subtitleInput" placeholder="Zadaj podnadpis">
+        </label>
+
+        <label>
+            Rok / Dátum
+            <input type="text" id="yearInput" placeholder="2026">
+        </label>
+
+        <label>
+            Doplnkový text
+            <input type="text" id="extraInput" placeholder="Krátky text">
+        </label>
+
+        <label>
+            Farba detailov
+            <input type="color" id="accentColor" value="#ff7a59">
+        </label>
+
+        <label>
+            Formát
+            <select id="exportFormat">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WEBP</option>
+            </select>
+        </label>
+
+        <button id="randomStyleBtn">Náhodný štýl</button>
+        <button id="addTextBtn">Pridať text</button>
+        <button id="addStampBtn">Pridať pečiatku</button>
+        <button id="clearExtrasBtn">Vymazať extras</button>
+        <button id="downloadBtn">Stiahnuť výsledok</button>
+    </section>
+
+    <section class="canvas-section">
+        <canvas id="posterCanvas"></canvas>
+
+        <p class="hint">
+            Nahraj fotografiu, vyber štýl a uprav texty. Pomocné texty a pečiatky môžeš
+            presúvať myšou. Dvojklik na pridaný text ho upraví. Tlačidlo Delete odstráni
+            vybraný prvok.
+        </p>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

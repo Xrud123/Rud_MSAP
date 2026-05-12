@@ -1,0 +1,250 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(66, 135, 245, 0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(255, 122, 89, 0.16), transparent 35%),
+        #080b12;
+    color: #f4f7fb;
+}
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 10px 16px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    transition: 0.2s;
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.app {
+    width: min(1450px, 94vw);
+    margin: 0 auto;
+    padding: 90px 0 40px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    margin: 0 0 12px;
+    font-size: clamp(34px, 5vw, 64px);
+    letter-spacing: -1px;
+}
+
+.hero p {
+    margin: 0 auto;
+    max-width: 980px;
+    color: #c7d3e4;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(170px, 1fr));
+    gap: 14px;
+    align-items: end;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 18px;
+    border-radius: 22px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: #d7e2f2;
+    font-weight: bold;
+}
+
+.upload-btn {
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    background: #3c82f6;
+    color: white !important;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.upload-btn:hover {
+    background: #5a96ff;
+}
+
+.upload-btn input {
+    display: none;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 12px;
+    border: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+    outline: none;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    color: #111827;
+}
+
+input[type="color"] {
+    width: 100%;
+    height: 42px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    padding: 4px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    transition: 0.2s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+#randomStyleBtn {
+    background: #6f5df6;
+}
+
+#randomStyleBtn:hover {
+    background: #8374ff;
+}
+
+#addTextBtn {
+    background: #ff7a59;
+}
+
+#addTextBtn:hover {
+    background: #ff926f;
+}
+
+#addStampBtn {
+    background: #d946ef;
+}
+
+#addStampBtn:hover {
+    background: #e879f9;
+}
+
+#clearExtrasBtn {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+#clearExtrasBtn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#downloadBtn {
+    background: #21b66f;
+}
+
+#downloadBtn:hover {
+    background: #27cc7d;
+}
+
+.canvas-section {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+canvas {
+    max-width: 100%;
+    max-height: 78vh;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    cursor: default;
+}
+
+.hint {
+    margin: 14px 0 0;
+    color: #aebbd0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+@media (max-width: 1250px) {
+    .controls {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .controls {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .back-btn {
+        position: static;
+        display: inline-block;
+        margin: 16px;
+    }
+
+    .app {
+        padding-top: 20px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+}
