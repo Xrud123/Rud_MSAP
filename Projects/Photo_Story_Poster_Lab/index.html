@@ -2,93 +2,185 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Story Poster Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<a href="/" class="back-btn">← Späť</a>
+<a href="/" class="back-btn">&#8592; Späť</a>
 
-<main class="app">
-    <section class="hero">
-        <h1>Photo Story Poster Lab</h1>
-        <p>
-            Nahraj fotografiu a premeň ju na filmový plagát, magazínovú obálku,
-            cyberpunk ID kartu, retro pohľadnicu alebo inú vizuálnu scénu.
-        </p>
-    </section>
+<div class="layout">
 
-    <section class="controls">
-        <label class="upload-btn">
-            Nahrať fotografiu
-            <input type="file" id="imageInput" accept="image/*">
-        </label>
+    <!-- ══ SIDEBAR ══ -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-label">POSTER LAB</div>
+            <h1 class="logo-title">Photo<br>Story</h1>
+        </div>
 
-        <label>
-            Štýl
-            <select id="posterStyle">
-                <option value="movie">Movie Poster</option>
-                <option value="detective">Detective Case File</option>
-                <option value="cyberpunk">Cyberpunk ID</option>
-                <option value="postcard">Retro Postcard</option>
-                <option value="magazine">Magazine Cover</option>
-                <option value="wanted">Wanted Poster</option>
-                <option value="album">Album Cover</option>
-                <option value="news">News Front Page</option>
-            </select>
-        </label>
+        <div class="panel">
+            <label class="upload-zone" id="uploadLabel">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span id="uploadText">Nahrať fotografiu</span>
+                <input type="file" id="imageInput" accept="image/*">
+            </label>
+        </div>
 
-        <label>
-            Názov
-            <input type="text" id="titleInput" placeholder="Zadaj názov">
-        </label>
+        <div class="panel">
+            <div class="panel-label">Štýl</div>
+            <div class="style-grid">
+                <button class="style-chip active" data-style="movie">🎬 Movie</button>
+                <button class="style-chip" data-style="detective">🔍 Case</button>
+                <button class="style-chip" data-style="cyberpunk">⚡ Cyber</button>
+                <button class="style-chip" data-style="postcard">📮 Post</button>
+                <button class="style-chip" data-style="magazine">✦ Mag</button>
+                <button class="style-chip" data-style="wanted">⭐ Wanted</button>
+                <button class="style-chip" data-style="album">🎵 Album</button>
+                <button class="style-chip" data-style="news">📰 News</button>
+                <button class="style-chip" data-style="horror">💀 Horror</button>
+                <button class="style-chip" data-style="scifi">🚀 Sci-Fi</button>
+            </div>
+            <button class="btn btn-ghost" id="randomStyleBtn">⚄ Náhodný štýl</button>
+        </div>
 
-        <label>
-            Podnadpis
-            <input type="text" id="subtitleInput" placeholder="Zadaj podnadpis">
-        </label>
+        <div class="panel">
+            <div class="panel-label">Texty</div>
 
-        <label>
-            Rok / Dátum
-            <input type="text" id="yearInput" placeholder="2026">
-        </label>
+            <div class="field">
+                <label>Názov</label>
+                <input type="text" id="titleInput" placeholder="Zadaj názov…">
+            </div>
 
-        <label>
-            Doplnkový text
-            <input type="text" id="extraInput" placeholder="Krátky text">
-        </label>
+            <div class="field">
+                <label>Podnadpis</label>
+                <input type="text" id="subtitleInput" placeholder="Podnadpis…">
+            </div>
 
-        <label>
-            Farba detailov
-            <input type="color" id="accentColor" value="#ff7a59">
-        </label>
+            <div class="row-2">
+                <div class="field">
+                    <label>Rok</label>
+                    <input type="text" id="yearInput" placeholder="2026">
+                </div>
 
-        <label>
-            Formát
-            <select id="exportFormat">
-                <option value="png">PNG</option>
-                <option value="jpeg">JPEG</option>
-                <option value="webp">WEBP</option>
-            </select>
-        </label>
+                <div class="field">
+                    <label>Extra text</label>
+                    <input type="text" id="extraInput" placeholder="Krátky text…">
+                </div>
+            </div>
 
-        <button id="randomStyleBtn">Náhodný štýl</button>
-        <button id="addTextBtn">Pridať text</button>
-        <button id="addStampBtn">Pridať pečiatku</button>
-        <button id="clearExtrasBtn">Vymazať extras</button>
-        <button id="downloadBtn">Stiahnuť výsledok</button>
-    </section>
+            <button class="btn btn-ai" id="aiGenerateBtn">✦ Náhodne vygenerovať texty</button>
+            <div id="aiStatus" class="ai-status" style="display:none"></div>
+        </div>
 
-    <section class="canvas-section">
+        <div class="panel">
+            <div class="panel-label">Farba &amp; Filter</div>
+
+            <div class="row-2">
+                <div class="field">
+                    <label>Farba detailov</label>
+                    <input type="color" id="accentColor" value="#ff7a59">
+                </div>
+
+                <div class="field">
+                    <label>Filter</label>
+                    <select id="filterSelect">
+                        <option value="none">Žiadny</option>
+                        <option value="bw">Čiernobiely</option>
+                        <option value="sepia">Sepia</option>
+                        <option value="vivid">Sýte</option>
+                        <option value="cool">Studené</option>
+                        <option value="warm">Teplé</option>
+                        <option value="fade">Fade</option>
+                        <option value="noir">Noir</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="slider-field">
+                <label>Jas <span id="brightVal">0</span></label>
+                <input type="range" id="brightness" min="-80" max="80" value="0">
+            </div>
+
+            <div class="slider-field">
+                <label>Kontrast <span id="contrastVal">0</span></label>
+                <input type="range" id="contrast" min="-60" max="80" value="0">
+            </div>
+
+            <div class="slider-field">
+                <label>Sýtosť <span id="satVal">0</span></label>
+                <input type="range" id="saturation" min="-100" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-label">Extras</div>
+
+            <div class="row-2">
+                <button class="btn btn-ghost" id="addTextBtn">＋ Text</button>
+                <button class="btn btn-ghost" id="addStampBtn">⬡ Pečiatka</button>
+            </div>
+
+            <button class="btn btn-danger" id="clearExtrasBtn">✕ Vymazať extras</button>
+
+            <div id="overlayEditor" class="overlay-editor" style="display:none">
+                <div class="panel-label" style="margin-bottom:6px">▸ Vybraný prvok</div>
+
+                <div class="field">
+                    <label>Text</label>
+                    <input type="text" id="overlayTextInput" placeholder="Text prvku…">
+                </div>
+
+                <div class="row-2" style="margin-top:6px">
+                    <div class="field">
+                        <label>Farba</label>
+                        <input type="color" id="overlayColorInput" value="#ffffff">
+                    </div>
+
+                    <div class="field">
+                        <label>Veľkosť <span id="overlaySizeVal">44</span></label>
+                        <input type="range" id="overlaySizeInput" min="14" max="120" value="44">
+                    </div>
+                </div>
+
+                <button class="btn btn-danger" id="deleteOverlayBtn" style="margin-top:6px">🗑 Odstrániť</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-label">Export</div>
+
+            <div class="field">
+                <label>Formát</label>
+                <select id="exportFormat">
+                    <option value="png">PNG</option>
+                    <option value="jpeg">JPEG</option>
+                    <option value="webp">WEBP</option>
+                </select>
+            </div>
+
+            <button class="btn btn-download" id="downloadBtn">↓ Stiahnuť plagát</button>
+        </div>
+
+        <div class="sidebar-footer">HTML · CSS · JS · Canvas API</div>
+    </aside>
+
+    <!-- ══ CANVAS ══ -->
+    <main class="canvas-area">
         <canvas id="posterCanvas"></canvas>
-
-        <p class="hint">
-            Nahraj fotografiu, vyber štýl a uprav texty. Pomocné texty a pečiatky môžeš
-            presúvať myšou. Dvojklik na pridaný text ho upraví. Tlačidlo Delete odstráni
-            vybraný prvok.
+        <p class="canvas-hint">
+            Presúvaj extras myšou alebo dotykom &nbsp;·&nbsp; Dvojklik = uprav text &nbsp;·&nbsp; Delete = zmaž
         </p>
-    </section>
-</main>
+    </main>
+
+</div>
 
 <script src="script.js"></script>
 </body>
